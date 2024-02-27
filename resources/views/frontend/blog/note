@@ -1,0 +1,108 @@
+
+
+    {{-- <script>
+        $(document).ready(function(){
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var id_blog = $(".id_blog").val();
+        var id_user = Number($('.id_user').val());
+        var _token= $('input[name="_token"]').val();
+        
+        
+       
+        // alert(id_user);
+        load_comment();
+
+        function load_comment(){
+            $.ajax({
+                    type:'POST',
+                    url:"{{ route('home.load-comments') }}",
+                    data:{id_blog:id_blog,_token:_token},
+                    success:function(data){  
+                        $(".response-area").html(data);
+                    }
+                })
+        }
+        //vote
+//vote
+    
+        $('.post-comments').click(function(){
+            var name = ($(this).closest('.media-body').find('.media-heading').text());
+            var comment = $(this).closest('.media-body').find('.comments').val();
+            var avatar = $('.media-object').attr('title');
+            // var _token= $('input[name="_token"]').val();
+            var level = 0;
+            if (id_user == "") {
+                alert("Vui lòng đăng nhập để bình luận");
+            }
+            else{
+                $.ajax({
+                    type:'POST',
+                    url:"{{ route('home.comments') }}",
+                    data:{id_blog:id_blog,id_user:id_user,comment:comment,level:level,name:name,_token:_token},
+                    success:function(data){                        
+                        load_comment();
+                        $('.comments').val('');
+                    }
+                })
+            }
+        });
+        $(document).on('click', '.btn-reply', function(){
+            var level = $(this).data('comment_id');
+            // alert(level);
+            if (id_user == "") {
+                alert("Vui lòng đăng nhập để bình luận");
+            }
+            else{
+                $.ajax({
+                    type:'GET',
+                    url:"{{ route('home.comments-reply') }}",
+                    data:{id_blog:id_blog,id_user:id_user,level:level},
+                    success:function(data){  
+                        $(".level_replay").val(data);
+                        
+                    }
+                })
+            }
+            
+        });
+
+        $(".post-comment-reply").click(function(){
+            var level = $('.level_replay').val();
+            var  comment =$('.message-replay').val();
+            if (id_user == "") {
+                alert("Vui lòng đăng nhập để bình luận");
+            }
+            else{
+                $.ajax({
+                    type:'POST',
+                    url:"{{ route('home.comments-reply-post') }}",
+                    data:{id_blog:id_blog,id_user:id_user,level:level,comment:comment,_token:_token},
+                    success:function(data){  
+                    }
+                })
+            }          
+        });
+
+        // $(document).on('click', '.post-comment-reply', function(){
+        //     var level = $('.level_replay').val();
+        //     if (id_user == "") {
+        //         alert("Vui lòng đăng nhập để bình luận");
+        //     }
+        //     else{
+        //         $.ajax({
+        //             type:'POST',
+        //             url:"{{ route('home.comments-reply-post') }}",
+        //             data:{id_blog:id_blog,id_user:id_user,level:level},
+        //             success:function(data){  
+        //             }
+        //         })
+        //     }          
+        // });
+
+
+    });
+    </script> --}}
